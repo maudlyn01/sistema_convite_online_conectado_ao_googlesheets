@@ -198,16 +198,16 @@ th {
 
 .guest-name {
   left: 7%;
-  top: 43.2%;
+  top: 41.8%;
   width: 42%;
-  font-size: clamp(32px, 3.3vw, 25px);
+  font-size: clamp(36px, 3.3vw, 25px);
   color: #96742c;
 }
 .table-name {
   left: 61%;
-  top: 74.13%;
+  top: 72.3%;
   width: 28%;
-  font-size: clamp(28px, 2.4vw, 18px);
+  font-size: clamp(32px, 2.4vw, 18px);
   color: #536052;
 }
 .guest-card,
