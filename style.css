@@ -212,7 +212,8 @@ th {
 }
 .guest-card,
 .online-actions,
-.rsvp {
+.rsvp,
+.gift-message {
   background: #fff;
   margin-top: 15px;
   padding: 20px;
