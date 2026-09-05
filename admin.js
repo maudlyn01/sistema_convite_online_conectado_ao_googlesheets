@@ -5,7 +5,7 @@ const SITE_URL =
   "https://maudlyn01.github.io/sistema_convite_online_conectado_ao_googlesheets";
 
 const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxNXvUqJWoZrDK1kuEdbNtHiZboeH5HoXLSamcvobRAS7QRlBRdBnhKWJBpZsVsnAzS/exec";
+  "https://script.google.com/macros/s/AKfycbxp6TJ_BrBYSHHPflmeNguChPNna7OAPdkXhwGJslLqQsdrlGtPdcTfxtZhZnDxGf7A/exec";
 
 let guests = JSON.parse(localStorage.getItem("rsvpGuests") || "[]");
 

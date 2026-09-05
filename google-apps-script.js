@@ -1,33 +1,97 @@
-// GOOGLE APPS SCRIPT — guardar confirmações no Google Sheets
-// 1. Crie uma Google Sheet.
-// 2. Extensions > Apps Script.
-// 3. Cole este código.
-// 4. Substitua SHEET_ID pelo ID da sua planilha.
-// 5. Deploy > New deployment > Web app.
-// 6. Execute as: Me | Who has access: Anyone.
-// 7. Copie a URL /exec para o painel do convite.
+const SHEET_ID = "12VgJ731e_wstBradDAAeRjvH4fUf9dYEPx0cYdy97BA";
+const SHEET_NAME = "Confirmações — Bodas Lucas & Selfina";
 
-const SHEET_ID = `https://docs.google.com/spreadsheets/d/12VgJ731e_wstBradDAAeRjvH4fUf9dYEPx0cYdy97BA/edit?gid=0#gid=0`;
-const SHEET_NAME = 'Confirmações';
+function getSheet() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
 
-function doPost(e) {
-  const data = JSON.parse(e.postData.contents);
-  const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME)
-    || SpreadsheetApp.openById(SHEET_ID).insertSheet(SHEET_NAME);
+  let sheet = ss.getSheetByName(SHEET_NAME);
 
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['ID', 'Nome', 'Mesa', 'Resposta', 'Data da Confirmação']);
+  if (!sheet) {
+    sheet = ss.insertSheet(SHEET_NAME);
+
+    sheet.appendRow([
+      "ID",
+      "Nome",
+      "Mesa",
+      "Resposta",
+      "Data da Confirmação"
+    ]);
   }
 
-  sheet.appendRow([
-    data.id,
-    data.nome,
-    data.mesa,
-    data.resposta,
-    data.data
-  ]);
+  return sheet;
+}
 
-  return ContentService
-    .createTextOutput(JSON.stringify({success:true}))
-    .setMimeType(ContentService.MimeType.JSON);
+
+// RECEBER CONFIRMAÇÕES DO CONVITE
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+
+    const sheet = getSheet();
+
+    sheet.appendRow([
+      data.id,
+      data.nome,
+      data.mesa,
+      data.resposta,
+      data.data
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        success: true,
+        message: "Confirmação guardada com sucesso"
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        success: false,
+        error: error.toString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+
+// ENVIAR CONFIRMAÇÕES PARA O DASHBOARD
+function doGet(e) {
+  try {
+    const sheet = getSheet();
+
+    const lastRow = sheet.getLastRow();
+
+    if (lastRow < 2) {
+      return ContentService
+        .createTextOutput(JSON.stringify([]))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const rows = sheet
+      .getRange(2, 1, lastRow - 1, 5)
+      .getValues();
+
+    const data = rows.map(row => ({
+      id: String(row[0]),
+      nome: row[1],
+      mesa: row[2],
+      resposta: row[3],
+      data: row[4]
+    }));
+
+    return ContentService
+      .createTextOutput(JSON.stringify(data))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        success: false,
+        error: error.toString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
 }

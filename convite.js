@@ -2,7 +2,8 @@ const p = new URLSearchParams(location.search),
   name = p.get("nome") || "Convidado(a)",
   table = p.get("mesa") || "Mesa",
   id = p.get("id") || "";
-  const API_URL = (`https://script.google.com/macros/s/AKfycbxNXvUqJWoZrDK1kuEdbNtHiZboeH5HoXLSamcvobRAS7QRlBRdBnhKWJBpZsVsnAzS/exec`)
+  const API_URL = (`  https://script.google.com/macros/s/AKfycbxp6TJ_BrBYSHHPflmeNguChPNna7OAPdkXhwGJslLqQsdrlGtPdcTfxtZhZnDxGf7A/exec
+`)
   //api = p.get("api") || "";
   const money = "Sua presença é o nosso maior presente! Se desejar nos homenagear com um presente, sugerimos uma contribuição em dinheiro para nos ajudar a continuar construindo momentos felizes.";
 for (const x of ["guestOverlay", "guestName"])
