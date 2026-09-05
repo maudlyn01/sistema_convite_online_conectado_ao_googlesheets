@@ -4,6 +4,7 @@ const p = new URLSearchParams(location.search),
   id = p.get("id") || "";
   const API_URL = (`https://script.google.com/macros/s/AKfycbxNXvUqJWoZrDK1kuEdbNtHiZboeH5HoXLSamcvobRAS7QRlBRdBnhKWJBpZsVsnAzS/exec`)
   //api = p.get("api") || "";
+  const money = "Sua presença é o nosso maior presente! Se desejar nos homenagear com um presente, sugerimos uma contribuição em dinheiro para nos ajudar a continuar construindo momentos felizes.";
 for (const x of ["guestOverlay", "guestName"])
   document.getElementById(x).textContent = name;
 for (const x of ["tableOverlay", "tableName"])

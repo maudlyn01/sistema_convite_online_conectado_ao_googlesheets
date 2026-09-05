@@ -308,3 +308,44 @@ footer {
     grid-column: auto;
   }
 }
+/* Mensagem sobre presente */
+/* Mensagem sobre presentes */
+.gift-message {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  background: #fff;
+  margin-top: 15px;
+  padding: 25px 20px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 5px 18px #0001;
+  border: 1px solid #e4d5af;
+}
+
+.gift-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.gift-message h2 {
+  margin: 0 0 15px;
+  font-family: Georgia, serif;
+  color: #8e6c28;
+  font-size: 22px;
+}
+
+.gift-message p {
+  margin: 10px auto;
+  max-width: 600px;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.gift-message p:first-of-type {
+  color: #8e6c28;
+  font-weight: bold;
+  font-size: 17px;
+}
