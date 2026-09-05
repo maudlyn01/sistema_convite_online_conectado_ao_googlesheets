@@ -7,7 +7,7 @@
 // 6. Execute as: Me | Who has access: Anyone.
 // 7. Copie a URL /exec para o painel do convite.
 
-const SHEET_ID = 'COLE_AQUI_O_ID_DA_SUA_GOOGLE_SHEET';
+const SHEET_ID = `https://docs.google.com/spreadsheets/d/12VgJ731e_wstBradDAAeRjvH4fUf9dYEPx0cYdy97BA/edit?gid=0#gid=0`;
 const SHEET_NAME = 'Confirmações';
 
 function doPost(e) {

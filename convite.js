@@ -1,8 +1,9 @@
 const p = new URLSearchParams(location.search),
   name = p.get("nome") || "Convidado(a)",
   table = p.get("mesa") || "Mesa",
-  id = p.get("id") || "",
-  api = p.get("api") || "";
+  id = p.get("id") || "";
+  const API_URL = (`https://script.google.com/macros/s/AKfycbxNXvUqJWoZrDK1kuEdbNtHiZboeH5HoXLSamcvobRAS7QRlBRdBnhKWJBpZsVsnAzS/exec`)
+  //api = p.get("api") || "";
 for (const x of ["guestOverlay", "guestName"])
   document.getElementById(x).textContent = name;
 for (const x of ["tableOverlay", "tableName"])
@@ -20,18 +21,19 @@ async function confirm(status) {
     resposta: status,
     data: new Date().toLocaleString("pt-PT"),
   };
-  if (!api) {
+  if (!API_URL) {
     result.textContent = "Configuração pendente. Contacte os organizadores.";
     result.className = "error";
     return;
   }
   try {
-    await fetch(api, {
+    await fetch(API_URL, {
       method: "POST",
       mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(data),
     });
+    
     result.textContent =
       status === "Sim"
         ? "✓ Presença confirmada. Muito obrigado!"

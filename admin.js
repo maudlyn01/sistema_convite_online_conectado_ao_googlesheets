@@ -2,7 +2,6 @@ const $ = (x) => document.getElementById(x);
 let guests = JSON.parse(localStorage.getItem("rsvpGuests") || "[]");
 let cfg = JSON.parse(localStorage.getItem("rsvpCfg") || "{}");
 $("siteUrl").value = cfg.siteUrl || "";
-$("sheetUrl").value = cfg.sheetUrl || "";
 const esc = (s) =>
   String(s).replace(
     /[&<>"']/g,
@@ -25,20 +24,15 @@ function toast(s) {
   setTimeout(() => t.classList.remove("show"), 2200);
 }
 function link(g) {
-  let base = (cfg.siteUrl || location.href.replace(/\/[^/]*$/, "")).replace(
-    /\/$/,
-    "",
-  );
-  return (
-    base +
-    "/convite.html?" +
-    new URLSearchParams({
-      id: g.id,
-      nome: g.name,
-      mesa: g.table,
-      api: cfg.sheetUrl || "",
-    })
-  );
+    const base = 'https://maudlyn01.github.io/sistema_convite_online_conectado_ao_googlesheets';
+
+    return base + '/convite.html?' +
+        new URLSearchParams({
+            id: g.id,
+            nome: g.name,
+            mesa: g.table,
+            api: cfg.sheetUrl || ''
+        });
 }
 function render() {
   let q = $("search").value.toLowerCase();
