@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Painel | Lucas & Selfina</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="admin.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MonteCarlo&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    <header>
+      <h1>🥂 Bodas de Ouro — Lucas & Selfina</h1>
+      <p>Gestão de convidados e confirmações</p>
+    </header>
+    <main class="app">
+      <section class="panel">
+        <h2>Registar convidado</h2>
+        <form id="guestForm">
+          <label>Nome *</label
+          ><input id="guestName" required placeholder="Ex.: Maria José" />
+          <label>Mesa *</label
+          ><input id="guestTable" required placeholder="Ex.: Mesa 05" />
+          <button>Adicionar convidado</button>
+        </form>
+        <hr />
+        <h3>Adicionar em massa</h3>
+        <p>Formato: <b>Nome | Mesa</b></p>
+        <textarea
+          id="bulkNames"
+          placeholder="Maria José | Mesa 01&#10;João António | Mesa 02"
+        ></textarea
+        ><button id="bulkAdd" type="button">Adicionar lista</button>
+      </section>
+      <section class="panel">
+        <h2>Configuração</h2>
+        <label>URL pública do site</label
+        ><input
+          id="siteUrl"
+          placeholder="https://bodas-lucas-selfina.netlify.app"
+        />
+        <label>URL do Google Apps Script (confirmações)</label
+        ><input
+          id="sheetUrl"
+          placeholder="https://script.google.com/macros/s/.../exec"
+        />
+        <button id="saveConfig" type="button">Guardar configuração</button>
+        <p class="hint">
+          As confirmações serão enviadas para o Google Sheets através desta URL.
+        </p>
+        <div class="stats">
+          <div><b id="total">0</b><span>Total</span></div>
+          <div><b id="yes">0</b><span>Confirmados</span></div>
+          <div><b id="no">0</b><span>Não vão</span></div>
+          <div><b id="pending">0</b><span>Pendentes</span></div>
+        </div>
+      </section>
+      <section class="panel full">
+        <div class="head">
+          <h2>Convidados</h2>
+          <button id="clearAll" class="danger">Limpar tudo</button>
+        </div>
+        <input id="search" placeholder="🔎 Pesquisar..." />
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Mesa</th>
+                <th>Estado</th>
+                <th>Data</th>
+                <th>Link</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="list"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <div id="toast"></div>
+    <script src="admin.js"></script>
+  </body>
+</html>

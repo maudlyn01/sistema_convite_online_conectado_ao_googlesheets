@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Convite | Lucas & Selfina</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="convite.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MonteCarlo&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  </head>
+  <body class="invite-page">
+    <main class="online-invite">
+      <div class="invite-image-wrap">
+        <img src="convite_original_hd.png" />
+        <div id="guestOverlay" class="guest-name"></div>
+        <div id="tableOverlay" class="table-name"></div>
+      </div>
+      <section class="guest-card">
+        <p>Este convite foi preparado especialmente para</p>
+        <h1 id="guestName"></h1>
+        <div class="table-pill">🍽️ <span id="tableName"></span></div>
+      </section>
+      <section class="online-actions">
+        <h2>Localização</h2>
+        <a
+          class="action religious"
+          href="https://maps.app.goo.gl/GH6w2bNVSXruVsws6"
+          target="_blank"
+          ><span>📍</span>
+          <div>
+            <b>Local — Cerimónia Religiosa</b
+            ><small>Abrir no Google Maps</small>
+          </div>
+          <i>›</i></a
+        >
+        <a
+          class="action civil"
+          href="https://maps.app.goo.gl/jW2mm1Xt3e6McgFt5"
+          target="_blank"
+          ><span>📍</span>
+          <div>
+            <b>Local — Cerimónia Civil</b><small>Abrir no Google Maps</small>
+          </div>
+          <i>›</i></a
+        >
+      </section>
+      <section class="rsvp">
+        <h2>Confirmação de Presença</h2>
+        <p id="rsvpQuestion"></p>
+        <div class="rsvpBtns">
+          <button id="yesBtn" class="yes">✓ Sim, vou comparecer</button
+          ><button id="noBtn" class="no">✕ Não poderei comparecer</button>
+        </div>
+        <div id="rsvpResult"></div>
+      </section>
+      <footer>Lucas & Selfina • Bodas de Ouro • 24 de Outubro de 2026</footer>
+    </main>
+  </body>
+</html>
