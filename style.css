@@ -178,6 +178,7 @@ th {
 .invite-image-wrap {
   position: relative;
   box-shadow: 0 10px 30px #0003;
+  container-type: inline-size;
 }
 .invite-image-wrap img {
   display: block;
@@ -198,16 +199,17 @@ th {
 
 .guest-name {
   left: 7%;
-  top: 41.8%;
+  top: 43%;
   width: 42%;
-  font-size: clamp(36px, 3.3vw, 25px);
+  font-size: clamp(18px, 3.3vw, 42px);
+  line-height: 1;
   color: #96742c;
 }
 .table-name {
   left: 61%;
-  top: 72.3%;
+  top: 73%;
   width: 28%;
-  font-size: clamp(32px, 2.4vw, 18px);
+  font-size: clamp(14px, 2.4vw, 30px);
   color: #536052;
 }
 .guest-card,
