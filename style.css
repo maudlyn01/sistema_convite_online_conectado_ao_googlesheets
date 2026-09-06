@@ -199,7 +199,7 @@ th {
 
 .guest-name {
   left: 7%;
-  top: 43%;
+  top: 59.3%;
   width: 42%;
   font-size: clamp(18px, 3.3vw, 42px);
   line-height: 1;
@@ -207,7 +207,7 @@ th {
 }
 .table-name {
   left: 61%;
-  top: 73%;
+  top: 72.6%;
   width: 28%;
   font-size: clamp(14px, 2.4vw, 30px);
   color: #536052;
