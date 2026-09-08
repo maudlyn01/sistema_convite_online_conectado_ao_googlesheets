@@ -175,15 +175,18 @@ th {
   margin: auto;
   padding: 18px 12px;
 }
-.invite-image-wrap {
+.invite-image-wrap
+ {
   position: relative;
   box-shadow: 0 10px 30px #0003;
   container-type: inline-size;
 }
-.invite-image-wrap img {
+.invite-image-wrap img{
   display: block;
   width: 100%;
 }
+
+
 .guest-name,
 .table-name,
 .montecarlo-regular {
@@ -215,7 +218,8 @@ th {
 .guest-card,
 .online-actions,
 .rsvp,
-.gift-message {
+.gift-message,
+.no-alcohol-message {
   background: #fff;
   margin-top: 15px;
   padding: 20px;
