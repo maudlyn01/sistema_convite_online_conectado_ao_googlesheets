@@ -206,7 +206,7 @@ th {
   left: 7%;
   top: 59.3%;
   width: 42%;
-  font-size: clamp(18px, 3.3vw, 42px);
+  font-size: clamp(16px, 3.3vw, 32px);
   line-height: 1;
   color: #96742c;
 }
