@@ -2,16 +2,34 @@ const p = new URLSearchParams(location.search),
   name = p.get("nome") || "Convidado(a)",
   table = p.get("mesa") || "Mesa",
   id = p.get("id") || "";
+  // Número de pessoas permitido neste convite
+const people = p.get("pessoas") === "2" ? 2 : 1;
+
   const API_URL = (`  https://script.google.com/macros/s/AKfycbxp6TJ_BrBYSHHPflmeNguChPNna7OAPdkXhwGJslLqQsdrlGtPdcTfxtZhZnDxGf7A/exec
 `)
   //api = p.get("api") || "";
   const money = "Sua presença é o nosso maior presente! Se desejar nos homenagear com um presente, sugerimos uma contribuição em dinheiro para nos ajudar a continuar construindo momentos felizes.";
-for (const x of ["guestOverlay", "guestName"])
+// Nome do convidado
+  for (const x of ["guestOverlay", "guestName"])
   document.getElementById(x).textContent = name;
+// Mesa
 for (const x of ["tableOverlay", "tableName"])
   document.getElementById(x).textContent = table;
+
+// Número de pessoas
+const guestPeople = document.getElementById("guestPeople");
+if (guestPeople) {
+  guestPeople.textContent = 
+  people === 2
+    ? "👥 Este convite é válido para 2 pessoas."
+    : "👤 Este convite é válido para 1 pessoa.";
+}
+
+// Pergunta de confirmação
 document.getElementById("rsvpQuestion").textContent =
   `Olá, ${name}! Confirma a sua presença?`;
+
+  // Confirmar presença
 async function confirm(status) {
   const result = document.getElementById("rsvpResult");
   result.textContent = "A guardar a sua resposta...";
@@ -20,6 +38,7 @@ async function confirm(status) {
     id,
     nome: name,
     mesa: table,
+    pessoas:people,
     resposta: status,
     data: new Date().toLocaleString("pt-PT"),
   };

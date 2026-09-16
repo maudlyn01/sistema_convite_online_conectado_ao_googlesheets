@@ -6,10 +6,12 @@
     <title>Painel | Lucas & Selfina</title>
     <link rel="stylesheet" href="style.css" />
     <script src="admin.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=MonteCarlo&family=Pinyon+Script&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=MonteCarlo&family=Pinyon+Script&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
@@ -24,16 +26,30 @@
           ><input id="guestName" required placeholder="Ex.: Maria José" />
           <label>Mesa *</label
           ><input id="guestTable" required placeholder="Ex.: Mesa 05" />
+          <label>Número de pessoas *</label>
+          <select id="guestPeople" required>
+            <option value="1">👤 1 pessoa</option>
+            <option value="2">👥 2 pessoas</option>
+          </select>
           <button>Adicionar convidado</button>
         </form>
         <hr />
         <h3>Adicionar em massa</h3>
-        <p>Formato: <b>Nome | Mesa</b></p>
+
+        <p>Formato: <b>Nome | Mesa | Número de pessoas</b></p>
+
+        <p class="hint">
+          O convite pode ser válido para <b>1 ou 2 pessoas</b>.<br />
+          Ex.: <b>Maria José | Mesa 01 | 1</b><br />
+          Ex.: <b>João António | Mesa 02 | 2</b>
+        </p>
+
         <textarea
           id="bulkNames"
-          placeholder="Maria José | Mesa 01&#10;João António | Mesa 02"
-        ></textarea
-        ><button id="bulkAdd" type="button">Adicionar lista</button>
+          placeholder="Maria José | Mesa 01 | 1&#10;João António | Mesa 02 | 2&#10;Carlos Manuel | Mesa 03 | 1"
+        ></textarea>
+
+        <button id="bulkAdd" type="button">Adicionar lista</button>
       </section>
       <section class="panel">
         <h2>Configuração</h2>
@@ -70,6 +86,7 @@
               <tr>
                 <th>Nome</th>
                 <th>Mesa</th>
+                <th>Pessoas</th>
                 <th>Estado</th>
                 <th>Data</th>
                 <th>Link</th>

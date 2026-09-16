@@ -55,6 +55,7 @@ function link(g) {
       id: g.id,
       nome: g.name,
       mesa: g.table,
+      pessoas: g.people || 1,
     })
   );
 }
@@ -76,10 +77,15 @@ function render() {
               ? '<span class="status not">✕ Não vai</span>'
               : '<span class="status wait">⏳ Pendente</span>';
 
+        let people = g.people === 2
+          ? "👥 2 pessoas"
+          : "👤 1 pessoa";
+
         return `
           <tr>
             <td>${esc(g.name)}</td>
             <td>${esc(g.table)}</td>
+            <td>${people}</td>
             <td>${st}</td>
             <td>${g.date || "-"}</td>
             <td>
@@ -96,7 +102,7 @@ function render() {
         `;
       })
       .join("") ||
-    '<tr><td colspan="6">Nenhum convidado.</td></tr>';
+    '<tr><td colspan="7">Nenhum convidado.</td></tr>';
 
   let yes = guests.filter((g) => g.status === "Sim").length;
   let no = guests.filter((g) => g.status === "Não").length;
@@ -111,10 +117,13 @@ function render() {
 $("guestForm").onsubmit = (e) => {
   e.preventDefault();
 
+  const people = Number($("guestPeople").value);
+
   guests.push({
     id: Date.now(),
     name: $("guestName").value.trim(),
     table: $("guestTable").value.trim(),
+    people:people,
     status: "Pendente",
     date: "",
   });
@@ -122,6 +131,11 @@ $("guestForm").onsubmit = (e) => {
   save();
   render();
   e.target.reset();
+  toast(
+    people === 2
+      ? "Convidado para 2 pessoas adicionado"
+      : "Convidado para 1 pessoa adicionado"
+  );
 };
 
 // Adicionar vários convidados
@@ -131,16 +145,20 @@ $("bulkAdd").onclick = () => {
 
   $("bulkNames")
     .value.split("\n")
+    .map(x => x.trim())
     .filter(Boolean)
     .forEach((x, i) => {
-      let [name, ...r] = x.split("|");
-      let table = r.join("|").trim();
+      let [name, table, people] = x.split("|").map(v => v.trim());
 
-      if (name?.trim() && table) {
+      // Se não informar pessoas, assume 1
+      people = people === "2" ? 2 : 1;
+
+      if (name && table) {
         guests.push({
           id: b + i,
-          name: name.trim(),
+          name,
           table,
+          people,
           status: "Pendente",
           date: "",
         });
