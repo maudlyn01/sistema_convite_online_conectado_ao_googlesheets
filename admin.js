@@ -206,7 +206,9 @@ $("guestForm").onsubmit = (e) => {
 
 
 
-// Adicionar vários convidados
+ /*=========================
+   ADICIONAR VARIOS CONVIDADOS
+   =========================*/
 $("bulkAdd").onclick = () => {
   let n = 0;
   let b = Date.now();
