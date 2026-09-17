@@ -59,6 +59,19 @@ function link(g) {
     })
   );
 }
+function editGuest(id) {
+  const g = guests.find((x) => x.id === id);
+
+  if (!g) return;
+
+  $("guestName").value = g.name;
+  $("guestTable").value = g.table;
+  $("guestPeople").value = g.people || 1;
+
+  $("guestForm").dataset.editingId = id;
+
+  $("guestForm").querySelector("button").textContent = "Guardar alterações";
+}
 
 function render() {
   let q = $("search").value.toLowerCase();
@@ -93,16 +106,22 @@ function render() {
                 Copiar
               </button>
             </td>
+             <td>
+              <button class="small edit" onclick="editGuest(${g.id})">
+                Editar
+              </button>
+            </td>
             <td>
               <button class="small del" onclick="del(${g.id})">
                 Apagar
               </button>
             </td>
+            
           </tr>
         `;
       })
       .join("") ||
-    '<tr><td colspan="7">Nenhum convidado.</td></tr>';
+    '<tr><td colspan="8">Nenhum convidado.</td></tr>';
 
   let yes = guests.filter((g) => g.status === "Sim").length;
   let no = guests.filter((g) => g.status === "Não").length;
@@ -117,26 +136,75 @@ function render() {
 $("guestForm").onsubmit = (e) => {
   e.preventDefault();
 
-  const people = Number($("guestPeople").value);
+  const form = e.target;
 
+  const editingId = form.dataset.editingId;
+
+  const name = $("guestName").value.trim();
+  const table = $("guestTable").value.trim();
+  const people = Number($("guestPeople").value) || 1;
+
+  // =========================
+  // EDITAR CONVIDADO
+  // =========================
+  if (editingId) {
+    const guest = guests.find(
+      (g) => String(g.id) === String(editingId)
+    );
+
+    if (!guest) {
+      toast("Convidado não encontrado");
+      return;
+    }
+
+    guest.name = name;
+    guest.table = table;
+    guest.people = people;
+
+    save();
+    render();
+
+    delete form.dataset.editingId;
+
+    form.querySelector("button").textContent = "Adicionar convidado";
+
+    form.reset();
+
+    $("guestPeople").value = 1;
+
+    toast("Convidado atualizado!");
+
+    return;
+  }
+
+  // =========================
+  // ADICIONAR NOVO CONVIDADO
+  // =========================
   guests.push({
     id: Date.now(),
-    name: $("guestName").value.trim(),
-    table: $("guestTable").value.trim(),
-    people:people,
+    name: name,
+    table: table,
+    people: people,
     status: "Pendente",
     date: "",
   });
 
   save();
   render();
-  e.target.reset();
+
+  form.reset();
+
+  $("guestPeople").value = 1;
+
   toast(
     people === 2
       ? "Convidado para 2 pessoas adicionado"
       : "Convidado para 1 pessoa adicionado"
   );
 };
+
+
+
 
 // Adicionar vários convidados
 $("bulkAdd").onclick = () => {
@@ -203,8 +271,10 @@ function del(id) {
   }
 }
 
+
 window.copyLink = copyLink;
 window.del = del;
+window.editGuest = editGuest;
 
 $("search").oninput = render;
 
